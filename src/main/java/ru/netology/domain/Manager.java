@@ -2,9 +2,12 @@ package ru.netology.domain;
 
 public class Manager {
     private MovieItem[] items = new MovieItem[0];
+    private int defaultLimit = 10;
     private int limit;
+
     public Manager() {
     }
+
     public Manager(int limit) {
         this.limit = limit;
     }
@@ -25,8 +28,8 @@ public class Manager {
 
     public MovieItem[] findLast() {
         int resultLength;
-        if (limit > 10) {
-            resultLength = 10;
+        if (limit == 0) {
+            resultLength = defaultLimit;
         } else {
             resultLength = this.limit;
         }
