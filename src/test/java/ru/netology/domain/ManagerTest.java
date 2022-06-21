@@ -53,8 +53,19 @@ public class ManagerTest {
     }
 
     @Test
-    public void shouldFindLastThree() {
-        Manager manager = new Manager(3);
+    public void shouldFindLastWhenDefaultLimit() {
+        Manager manager = new Manager(10);
+        manager.save(first);
+        manager.save(second);
+        manager.save(third);
+        MovieItem[] actual = manager.findLast();
+        MovieItem[] expected = new MovieItem[]{third, second, first};
+        Assertions.assertArrayEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldFindLastWhenDefaultLimitExceeded() {
+        Manager manager = new Manager(15);
         manager.save(first);
         manager.save(second);
         manager.save(third);
